@@ -32,93 +32,109 @@
             v-model="currentFormStep"
             :label-position="'right'"
             :size="'is-small'"
-            :has-navigation="true"
+            :has-navigation="firstStepIsValid"
             :animated="false"
             vertical
             type="is-success"
           >
             <b-step-item label="General data">
-              <h3 class="title has-text-primary">
-                General data
-              </h3>
-              <b-field label="Will you become a shareholder as a person or an (existing) company?">
-                <b-radio
-                  v-model="shareholder.generalData.naturalPerson"
-                  name="naturalPersonRadio"
-                  :native-value="true"
-                  type="is-success"
-                >
-                  Natural person
-                </b-radio>
-                <b-radio
-                  v-model="shareholder.generalData.naturalPerson"
-                  name="naturalPersonRadio"
-                  :native-value="false"
-                  type="is-success"
-                >
-                  Company
-                </b-radio>
-              </b-field>
-              <b-field
-                label="Are you fluent in the Dutch language?"
-                message="It is not legally possible to translate for someone. This may only be done by a sworn interpreter."
+              <div
+                class="columns"
               >
-                <b-radio
-                  v-model="shareholder.generalData.fluent"
-                  name="fluentRadio"
-                  :native-value="true"
-                  type="is-success"
+                <div
+                  class="column is-three-fiths is-offset-1"
                 >
-                  yes
-                </b-radio>
-                <b-radio
-                  v-model="shareholder.generalData.fluent"
-                  name="fluentRadio"
-                  :native-value="false"
-                  type="is-success"
-                >
-                  no
-                </b-radio>
-              </b-field>
-              <b-field label="Do you officially live in the Netherlands?">
-                <b-radio
-                  v-model="shareholder.generalData.resident"
-                  name="residentRadio"
-                  :native-value="true"
-                  type="is-success"
-                >
-                  yes
-                </b-radio>
-                <b-radio
-                  v-model="shareholder.generalData.resident"
-                  name="residentRadio"
-                  :native-value="false"
-                  type="is-success"
-                >
-                  no
-                </b-radio>
-              </b-field>
-              <b-field
-                label="Will you become a director in the BV?"
-                message="At least one shareholder must also become a director in the BV."
-              >
-                <b-radio
-                  v-model="shareholder.generalData.director"
-                  name="directorRadio"
-                  :native-value="true"
-                  type="is-success"
-                >
-                  yes
-                </b-radio>
-                <b-radio
-                  v-model="shareholder.generalData.director"
-                  name="directorRadio"
-                  :native-value="false"
-                  type="is-success"
-                >
-                  no
-                </b-radio>
-              </b-field>
+                  <h3 class="title has-text-primary">
+                    General data
+                  </h3>
+                  <b-field label="Will you become a shareholder as a person or an (existing) company?">
+                    <b-radio
+                      v-model="shareholder.generalData.naturalPerson"
+                      name="naturalPersonRadio"
+                      :native-value="true"
+                      type="is-success"
+                      required
+                    >
+                      Natural person
+                    </b-radio>
+                    <b-radio
+                      v-model="shareholder.generalData.naturalPerson"
+                      name="naturalPersonRadio"
+                      :native-value="false"
+                      type="is-success"
+                      required
+                    >
+                      Company
+                    </b-radio>
+                  </b-field>
+                  <b-field
+                    label="Are you fluent in the Dutch language?"
+                    message="It is not legally possible to translate for someone. This may only be done by a sworn interpreter."
+                  >
+                    <b-radio
+                      v-model="shareholder.generalData.fluent"
+                      name="fluentRadio"
+                      :native-value="true"
+                      type="is-success"
+                      required
+                    >
+                      yes
+                    </b-radio>
+                    <b-radio
+                      v-model="shareholder.generalData.fluent"
+                      name="fluentRadio"
+                      :native-value="false"
+                      type="is-success"
+                      required
+                    >
+                      no
+                    </b-radio>
+                  </b-field>
+                  <b-field label="Do you officially live in the Netherlands?">
+                    <b-radio
+                      v-model="shareholder.generalData.resident"
+                      name="residentRadio"
+                      :native-value="true"
+                      type="is-success"
+                      required
+                    >
+                      yes
+                    </b-radio>
+                    <b-radio
+                      v-model="shareholder.generalData.resident"
+                      name="residentRadio"
+                      :native-value="false"
+                      type="is-success"
+                      required
+                    >
+                      no
+                    </b-radio>
+                  </b-field>
+                  <b-field
+                    label="Will you become a director in the BV?"
+                    message="At least one shareholder must also become a director in the BV."
+                  >
+                    <b-radio
+                      v-model="shareholder.generalData.director"
+                      name="directorRadio"
+                      :native-value="true"
+                      type="is-success"
+                      required
+                    >
+                      yes
+                    </b-radio>
+                    <b-radio
+                      v-model="shareholder.generalData.director"
+                      name="directorRadio"
+                      :native-value="false"
+                      type="is-success"
+                      required
+                    >
+                      no
+                    </b-radio>
+                  </b-field>
+                </div>
+              </div>
             </b-step-item>
 
             <b-step-item label="Personal data">
@@ -128,18 +144,41 @@
             <b-step-item label="Contact details">
               Lorem Ipsum Dolor Sit Amet
             </b-step-item>
+
             <template
-              #navigation="{next}"
+              v-if="firstStepIsValid"
+              #navigation="{previous, next}"
             >
-              <b-button
-                type="is-primary"
-                rounded
-                outlined
-                :disabled="next.disabled"
-                @click.prevent="next.action"
+              <div
+                class="step-navigation columns"
               >
-                Personal data
-              </b-button>
+                <b-button
+                  v-if="currentFormStep > 0"
+                  type="is-primary"
+                  class="navigation-previous"
+                  rounded
+                  outlined
+                  :disabled="previous.disabled"
+                  @click.prevent="previous.action"
+                >
+                  Back
+                </b-button>
+                <div
+                  class="column is-one-fith is-offset-one-fifth"
+                >
+                  <b-button
+                    v-if="currentFormStep === 0"
+                    type="is-primary"
+                    class="navigation-next"
+                    rounded
+                    outlined
+                    :disabled="next.disabled"
+                    @click.prevent="next.action"
+                  >
+                    Personal data
+                  </b-button>
+                </div>
+              </div>
             </template>
           </b-steps>
         </div>
@@ -187,6 +226,18 @@ export default Vue.extend({
           }
         }
       ]
+    }
+  },
+
+  computed: {
+    firstStepIsValid (): boolean {
+      if (this.shareholders[this.isOpen].generalData.naturalPerson !== null &&
+          this.shareholders[this.isOpen].generalData.fluent !== null &&
+          this.shareholders[this.isOpen].generalData.resident !== null &&
+          this.shareholders[this.isOpen].generalData.director !== null) {
+        return true
+      }
+      return false
     }
   }
 })
