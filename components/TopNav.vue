@@ -19,15 +19,19 @@
           </figure>
         </div>
         <div class="media-content">
-          <p class="title is-4 has-text-white">Nicol</p>
-          <p class="subtitle is-6 has-text-white">@realNicolBolas</p>
+          <p class="title is-4 has-text-white">
+            Nicol
+          </p>
+          <p class="subtitle is-6 has-text-white">
+            @realNicolBolas
+          </p>
         </div>
       </div>
     </template>
   </b-navbar>
 </template>
 
-<style>
+<style scoped>
   .navBarSpacing {
     padding: 30px 48px;
   }
