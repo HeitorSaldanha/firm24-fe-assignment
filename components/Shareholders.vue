@@ -32,7 +32,7 @@
             v-model="currentFormStep"
             :label-position="'right'"
             :size="'is-small'"
-            :has-navigation="firstStepIsValid"
+            :has-navigation="false"
             :animated="false"
             vertical
             type="is-success"
@@ -135,6 +135,24 @@
                   </b-field>
                 </div>
               </div>
+              <div
+                class="columns"
+              >
+                <div
+                  class="column is-three-fiths is-offset-1"
+                >
+                  <b-button
+                    v-if="firstStepIsValid"
+                    type="is-primary"
+                    class="navigation-next"
+                    rounded
+                    outlined
+                    @click.prevent="currentFormStep = 1"
+                  >
+                    Personal data
+                  </b-button>
+                </div>
+              </div>
             </b-step-item>
 
             <b-step-item label="Personal data">
@@ -144,42 +162,6 @@
             <b-step-item label="Contact details">
               Lorem Ipsum Dolor Sit Amet
             </b-step-item>
-
-            <template
-              v-if="firstStepIsValid"
-              #navigation="{previous, next}"
-            >
-              <div
-                class="step-navigation columns"
-              >
-                <b-button
-                  v-if="currentFormStep > 0"
-                  type="is-primary"
-                  class="navigation-previous"
-                  rounded
-                  outlined
-                  :disabled="previous.disabled"
-                  @click.prevent="previous.action"
-                >
-                  Back
-                </b-button>
-                <div
-                  class="column is-one-fith is-offset-one-fifth"
-                >
-                  <b-button
-                    v-if="currentFormStep === 0"
-                    type="is-primary"
-                    class="navigation-next"
-                    rounded
-                    outlined
-                    :disabled="next.disabled"
-                    @click.prevent="next.action"
-                  >
-                    Personal data
-                  </b-button>
-                </div>
-              </div>
-            </template>
           </b-steps>
         </div>
       </div>
