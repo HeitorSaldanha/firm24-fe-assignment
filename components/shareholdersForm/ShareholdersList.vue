@@ -19,6 +19,20 @@
           <p class="card-header-title">
             {{ shareholder.title }}
           </p>
+          <a
+            v-if="index > 0"
+            class="card-header-icon"
+          >
+            <b-button
+              type="is-ghost"
+              @click.prevent="deleteShareholder(index)"
+            >
+              <b-icon
+                type="is-danger"
+                :icon="'delete'"
+              />
+            </b-button>
+          </a>
           <a class="card-header-icon">
             <b-icon
               :icon="props.open ? 'menu-down' : 'menu-up'"
@@ -53,6 +67,12 @@ export default Vue.extend({
   mounted () {
     if (localStorage.shareholders) {
       this.$store.commit('shareholdersForm/loadShareholders', JSON.parse(localStorage.shareholders))
+    }
+  },
+  methods: {
+    deleteShareholder (index:number) {
+      this.$store.commit('shareholdersForm/removeShareholder', index)
+      localStorage.shareholders = JSON.stringify(this.$store.state.shareholdersForm.shareholders)
     }
   }
 })

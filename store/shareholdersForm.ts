@@ -70,8 +70,8 @@ export const mutations = {
     state.shareholders.push(newShareholder)
     state.isOpen = state.shareholders.length - 1
   },
-  removeShareholder (state:ShareholdersForm, shareholder:Shareholder) {
-    state.shareholders.splice(state.shareholders.findIndex(el => el.title === shareholder.title), 1)
+  removeShareholder (state:ShareholdersForm, index: number) {
+    state.shareholders.splice(index, 1)
   },
   changeStep (state:ShareholdersForm, data: { index: number, step: number }) {
     state.shareholders[data.index].currentFormStep = data.step
