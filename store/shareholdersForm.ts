@@ -18,6 +18,15 @@ export const state = ():ShareholdersForm => ({
         surname: '',
         dateOfBirth: '',
         countryOfBirth: ''
+      },
+      contactDetails: {
+        telephoneNumber: '',
+        emailAddress: '',
+        postalCode: '',
+        houseNumber: '',
+        complement: '',
+        streetName: '',
+        placeName: ''
       }
     }
   ]
@@ -65,5 +74,27 @@ export const mutations = {
   },
   changeCountryOfBirth (state:ShareholdersForm, data: { index: number, value: string }) {
     state.shareholders[data.index].personalData.countryOfBirth = data.value
+  },
+  // Contact Data Mutations
+  changeTelephoneNumber (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.telephoneNumber = data.value
+  },
+  changeEmailAddress (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.emailAddress = data.value
+  },
+  changePostalCode (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.postalCode = data.value
+  },
+  changeHouseNumber (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.houseNumber = data.value
+  },
+  changeComplement (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.complement = data.value
+  },
+  changeStreetName (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.streetName = data.value
+  },
+  changePlaceName (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].contactDetails.placeName = data.value
   }
 }
