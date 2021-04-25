@@ -9,7 +9,7 @@ export interface PersonalData {
   salutation: string,
   firstName: string,
   surname: string,
-  dateOfBirth: Date,
+  dateOfBirth: Date|null,
   countryOfBirth: string
 }
 

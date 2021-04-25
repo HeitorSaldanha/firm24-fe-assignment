@@ -18,6 +18,7 @@
         >
           <b-button
             type="is-primary"
+            class="mb-2"
             rounded
             expanded
             outlined

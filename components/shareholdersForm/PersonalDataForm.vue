@@ -48,6 +48,7 @@
         <b-field label="Date of Birth">
           <b-datepicker
             v-model="formatedBirthDate"
+            :date-formatter="dateFormatter"
             placeholder=""
             icon="calendar-today"
             trap-focus
@@ -113,7 +114,10 @@ export default Vue.extend({
       return { ...this.$store.state.shareholdersForm.shareholders[this.index].personalData }
     },
     formatedBirthDate ():Date {
-      return new Date(this.personalData.dateOfBirth)
+      if (this.personalData.dateOfBirth) {
+        return new Date(this.personalData.dateOfBirth)
+      }
+      return new Date(0)
     },
     filteredCountryList ():string[] {
       return this.countryList.filter((query:string) => {
@@ -153,6 +157,12 @@ export default Vue.extend({
         .catch((err) => {
           this.error = err.toString()
         })
+    },
+    dateFormatter (date:Date) {
+      if (date.getTime() === new Date(0).getTime()) {
+        return ''
+      }
+      return date.toLocaleDateString('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit' })
     }
   }
 })

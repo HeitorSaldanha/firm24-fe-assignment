@@ -16,7 +16,7 @@ export const state = ():ShareholdersForm => ({
         salutation: '',
         firstName: '',
         surname: '',
-        dateOfBirth: new Date(),
+        dateOfBirth: null,
         countryOfBirth: ''
       },
       contactDetails: {
@@ -54,7 +54,7 @@ export const mutations = {
         salutation: '',
         firstName: '',
         surname: '',
-        dateOfBirth: new Date(),
+        dateOfBirth: null,
         countryOfBirth: ''
       },
       contactDetails: {
