@@ -72,6 +72,7 @@ export const mutations = {
   },
   removeShareholder (state:ShareholdersForm, index: number) {
     state.shareholders.splice(index, 1)
+    state.shareholders = state.shareholders.map((el, index) => { return { ...el, title: `Shareholder ${index + 1} ${index === 0 ? '(applicant)' : ''}` } })
   },
   changeStep (state:ShareholdersForm, data: { index: number, step: number }) {
     state.shareholders[data.index].currentFormStep = data.step
