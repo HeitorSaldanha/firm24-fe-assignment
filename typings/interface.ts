@@ -5,9 +5,18 @@ export interface GeneralData {
   director: boolean|null
 }
 
+export interface PersonalData {
+  salutation: string,
+  firstName: string,
+  surname: string,
+  dateOfBirth: string,
+  countryOfBirth: string
+}
+
 export interface Shareholder {
   title: string,
-  generalData: GeneralData
+  generalData: GeneralData,
+  personalData: PersonalData,
 }
 
 export interface ShareholdersForm {

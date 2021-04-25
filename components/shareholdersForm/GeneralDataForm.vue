@@ -112,9 +112,8 @@
         class="column is-three-fiths is-offset-1"
       >
         <b-button
-          v-if="firstStepIsValid"
+          v-if="formIsFilled"
           type="is-primary"
-          class="navigation-next"
           rounded
           outlined
           @click.prevent="$store.commit('shareholdersForm/changeStep', 1)"
@@ -142,7 +141,7 @@ export default Vue.extend({
     generalData ():GeneralData {
       return { ...this.$store.state.shareholdersForm.shareholders[this.index].generalData }
     },
-    firstStepIsValid ():Boolean {
+    formIsFilled ():Boolean {
       if (this.generalData.naturalPerson !== null &&
           this.generalData.fluent !== null &&
           this.generalData.resident !== null &&

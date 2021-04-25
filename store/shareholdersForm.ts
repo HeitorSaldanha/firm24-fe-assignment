@@ -11,12 +11,20 @@ export const state = ():ShareholdersForm => ({
         fluent: null,
         resident: null,
         director: null
+      },
+      personalData: {
+        salutation: '',
+        firstName: '',
+        surname: '',
+        dateOfBirth: '',
+        countryOfBirth: ''
       }
     }
   ]
 })
 
 export const mutations = {
+  // Root Mutations
   open (state:ShareholdersForm, open:number) {
     state.isOpen = open
   },
@@ -29,6 +37,7 @@ export const mutations = {
   removeShareholder (state:ShareholdersForm, shareholder:Shareholder) {
     state.shareholders.splice(state.shareholders.findIndex(el => el.title === shareholder.title), 1)
   },
+  // General Data Mutations
   toggleNaturalPerson (state:ShareholdersForm, data: { index: number, value: boolean }) {
     state.shareholders[data.index].generalData.naturalPerson = data.value
   },
@@ -40,5 +49,21 @@ export const mutations = {
   },
   toggleDirector (state:ShareholdersForm, data: { index: number, value: boolean }) {
     state.shareholders[data.index].generalData.director = data.value
+  },
+  // Personal Data Mutations
+  changeSalutation (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].personalData.salutation = data.value
+  },
+  changeFirstName (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].personalData.firstName = data.value
+  },
+  changeSurname (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].personalData.surname = data.value
+  },
+  changeDateOfBirth (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].personalData.dateOfBirth = data.value
+  },
+  changeCountryOfBirth (state:ShareholdersForm, data: { index: number, value: string }) {
+    state.shareholders[data.index].personalData.countryOfBirth = data.value
   }
 }

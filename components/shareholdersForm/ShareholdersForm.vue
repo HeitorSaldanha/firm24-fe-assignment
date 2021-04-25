@@ -42,7 +42,7 @@
             </b-step-item>
 
             <b-step-item label="Personal data" :clickable="false">
-              Lorem Ipsum Dolor Sit Amet
+              <PersonalDataForm :index="index" />
             </b-step-item>
 
             <b-step-item label="Contact details" :clickable="false">
@@ -58,13 +58,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import GeneralDataForm from '~/components/shareholdersForm/GeneralDataForm.vue'
+import PersonalDataForm from '~/components/shareholdersForm/PersonalDataForm.vue'
 import { ShareholdersForm } from '~/typings/interface'
 
 export default Vue.extend({
   name: 'ShareholdersForm',
 
   components: {
-    GeneralDataForm
+    GeneralDataForm,
+    PersonalDataForm
   },
 
   computed: {
