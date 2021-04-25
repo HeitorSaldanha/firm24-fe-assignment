@@ -46,7 +46,7 @@
             </b-step-item>
 
             <b-step-item label="Contact details" :clickable="false">
-              Lorem Ipsum Dolor Sit Amet
+              <ContactDetailsForm :index="index" />
             </b-step-item>
           </b-steps>
         </div>
@@ -59,19 +59,24 @@
 import Vue from 'vue'
 import GeneralDataForm from '~/components/shareholdersForm/GeneralDataForm.vue'
 import PersonalDataForm from '~/components/shareholdersForm/PersonalDataForm.vue'
+import ContactDetailsForm from '~/components/shareholdersForm/ContactDetailsForm.vue'
 import { ShareholdersForm } from '~/typings/interface'
 
 export default Vue.extend({
   name: 'ShareholdersForm',
-
   components: {
     GeneralDataForm,
-    PersonalDataForm
+    PersonalDataForm,
+    ContactDetailsForm
   },
-
   computed: {
     shareholdersForm ():ShareholdersForm {
       return { ...this.$store.state.shareholdersForm }
+    }
+  },
+  mounted () {
+    if (localStorage.shareholders) {
+      this.$store.commit('shareholdersForm/loadShareholders', JSON.parse(localStorage.shareholders))
     }
   }
 })

@@ -9,7 +9,7 @@ export interface PersonalData {
   salutation: string,
   firstName: string,
   surname: string,
-  dateOfBirth: string,
+  dateOfBirth: Date,
   countryOfBirth: string
 }
 
@@ -31,7 +31,7 @@ export interface Shareholder {
 }
 
 export interface ShareholdersForm {
-  isOpen: number,
+  isOpen: number|null,
   currentFormStep: number,
-  shareholders: [Shareholder]
+  shareholders: Shareholder[]
 }

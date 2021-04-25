@@ -16,7 +16,7 @@ export const state = ():ShareholdersForm => ({
         salutation: '',
         firstName: '',
         surname: '',
-        dateOfBirth: '',
+        dateOfBirth: new Date(),
         countryOfBirth: ''
       },
       contactDetails: {
@@ -34,14 +34,43 @@ export const state = ():ShareholdersForm => ({
 
 export const mutations = {
   // Root Mutations
-  open (state:ShareholdersForm, open:number) {
+  open (state:ShareholdersForm, open:number|null) {
     state.isOpen = open
   },
   changeStep (state:ShareholdersForm, step:number) {
     state.currentFormStep = step
   },
-  addShareholder (state:ShareholdersForm, shareholder:Shareholder) {
-    state.shareholders.push(shareholder)
+  loadShareholders (state:ShareholdersForm, shareholders:Shareholder[]) {
+    state.shareholders = shareholders
+  },
+  addShareholder (state:ShareholdersForm) {
+    const newShareholder = {
+      title: `Shareholder ${state.shareholders.length + 1}`,
+      generalData: {
+        naturalPerson: null,
+        fluent: null,
+        resident: null,
+        director: null
+      },
+      personalData: {
+        salutation: '',
+        firstName: '',
+        surname: '',
+        dateOfBirth: new Date(),
+        countryOfBirth: ''
+      },
+      contactDetails: {
+        telephoneNumber: '',
+        emailAddress: '',
+        postalCode: '',
+        houseNumber: '',
+        complement: '',
+        streetName: '',
+        placeName: ''
+      }
+    }
+    state.shareholders.push(newShareholder)
+    state.isOpen = state.shareholders.length - 1
   },
   removeShareholder (state:ShareholdersForm, shareholder:Shareholder) {
     state.shareholders.splice(state.shareholders.findIndex(el => el.title === shareholder.title), 1)
@@ -70,7 +99,7 @@ export const mutations = {
     state.shareholders[data.index].personalData.surname = data.value
   },
   changeDateOfBirth (state:ShareholdersForm, data: { index: number, value: string }) {
-    state.shareholders[data.index].personalData.dateOfBirth = data.value
+    state.shareholders[data.index].personalData.dateOfBirth = new Date(data.value)
   },
   changeCountryOfBirth (state:ShareholdersForm, data: { index: number, value: string }) {
     state.shareholders[data.index].personalData.countryOfBirth = data.value

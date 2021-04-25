@@ -141,7 +141,7 @@ export default Vue.extend({
     generalData ():GeneralData {
       return { ...this.$store.state.shareholdersForm.shareholders[this.index].generalData }
     },
-    formIsFilled ():Boolean {
+    formIsFilled ():boolean {
       if (this.generalData.naturalPerson !== null &&
           this.generalData.fluent !== null &&
           this.generalData.resident !== null &&

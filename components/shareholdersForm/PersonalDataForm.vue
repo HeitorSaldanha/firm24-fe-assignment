@@ -47,7 +47,7 @@
         </b-field>
         <b-field label="Date of Birth">
           <b-datepicker
-            v-model="personalData.dateOfBirth"
+            v-model="formatedBirthDate"
             placeholder=""
             icon="calendar-today"
             trap-focus
@@ -112,6 +112,9 @@ export default Vue.extend({
     personalData ():PersonalData {
       return { ...this.$store.state.shareholdersForm.shareholders[this.index].personalData }
     },
+    formatedBirthDate ():Date {
+      return new Date(this.personalData.dateOfBirth)
+    },
     filteredCountryList ():string[] {
       return this.countryList.filter((query:string) => {
         return query
@@ -120,7 +123,7 @@ export default Vue.extend({
           .includes(this.personalData.countryOfBirth.toLowerCase())
       })
     },
-    formIsFilled ():Boolean {
+    formIsFilled ():boolean {
       if (this.personalData.salutation !== null &&
       this.personalData.salutation !== '' &&
           this.personalData.firstName !== null &&
@@ -128,9 +131,8 @@ export default Vue.extend({
           this.personalData.surname !== null &&
       this.personalData.surname !== '' &&
           this.personalData.dateOfBirth !== null &&
-      this.personalData.dateOfBirth !== '' &&
-          this.personalData.countryOfBirth !== null &&
-      this.personalData.countryOfBirth !== '') {
+      this.personalData.countryOfBirth !== null &&
+          this.personalData.countryOfBirth !== '') {
         return true
       }
       return false
