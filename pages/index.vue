@@ -1,53 +1,36 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile">
-      <card
-        title="Free"
-        icon="github"
-      >
-        Open source on <a href="https://github.com/buefy/buefy">
-          GitHub
-        </a>
-      </card>
+    <Stepper>
+      <b-step-item step="1" label="Shareholders">
+        <ShareholdersList />
+      </b-step-item>
 
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">
-          Every
-        </b> component is responsive
-      </card>
+      <b-step-item step="2" label="BV Data">
+        <h1 class="title has-text-centered">
+          BV Data
+        </h1>
+        Lorem ipsum dolor sit amet.
+      </b-step-item>
 
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">
-          Vue.js
-        </a> and <a href="http://bulma.io/">
-          Bulma
-        </a>
-      </card>
-
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
-    </div>
+      <b-step-item step="3" label="Documents">
+        <h1 class="title has-text-centered">
+          Documents
+        </h1>
+        Lorem ipsum dolor sit amet.
+      </b-step-item>
+    </Stepper>
   </section>
 </template>
 
 <script>
-import Card from '~/components/Card'
-
+import Stepper from '~/components/Stepper'
+import ShareholdersList from '~/components/shareholdersForm/ShareholdersList'
 export default {
   name: 'HomePage',
 
   components: {
-    Card
+    Stepper,
+    ShareholdersList
   }
 }
 </script>
