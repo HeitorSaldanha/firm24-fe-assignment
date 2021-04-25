@@ -6,6 +6,7 @@
       <div
         class="column is-three-fiths is-offset-1"
       >
+        <ReturnStep />
         <h3 class="title has-text-primary">
           Personal data
         </h3>
@@ -88,9 +89,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import { PersonalData } from 'typings/interface'
+import ReturnStep from '~/components/shareholdersForm/ReturnStep.vue'
 
 export default Vue.extend({
   name: 'PersonalDataForm',
+  components: {
+    ReturnStep
+  },
   props: {
     index: {
       type: Number,
