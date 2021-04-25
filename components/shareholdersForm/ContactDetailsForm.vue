@@ -24,6 +24,7 @@
           <b-input
             v-model="contactDetails.emailAddress"
             name="emailAddressInput"
+            type="email"
             required
             @input="(e) => $store.commit('shareholdersForm/changeEmailAddress', { index, value: e })"
           />
