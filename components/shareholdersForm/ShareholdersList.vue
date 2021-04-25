@@ -25,7 +25,7 @@
           >
             <b-button
               type="is-ghost"
-              @click.prevent="deleteShareholder(index)"
+              @click.stop="openModal(index, shareholder.title, shareholder.personalData.firstName, shareholder.personalData.surname)"
             >
               <b-icon
                 type="is-danger"
@@ -46,18 +46,50 @@
         </div>
       </div>
     </b-collapse>
+    <b-modal
+      v-model="showDeleteConfirmationModal"
+      has-modal-card
+      trap-focus
+      :destroy-on-hide="false"
+      aria-role="dialog"
+      aria-label="Example Modal"
+      aria-modal
+    >
+      <template #default="props">
+        <DeleteConfirmationModal
+          :index="modalProps.index"
+          :title="modalProps.title"
+          :first-name="modalProps.firstName"
+          :surname="modalProps.surname"
+          @close="props.close"
+        />
+      </template>
+    </b-modal>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import ShareholdersFormComponent from '~/components/shareholdersForm/ShareholdersForm.vue'
+import DeleteConfirmationModal from '~/components/shareholdersForm/DeleteConfirmationModal.vue'
 import { ShareholdersForm } from '~/typings/interface'
 
 export default Vue.extend({
   name: 'ShareholdersList',
   components: {
-    ShareholdersFormComponent
+    ShareholdersFormComponent,
+    DeleteConfirmationModal
+  },
+  data () {
+    return {
+      showDeleteConfirmationModal: false,
+      modalProps: {
+        index: 0,
+        title: '',
+        firstName: '',
+        surname: ''
+      }
+    }
   },
   computed: {
     shareholdersForm ():ShareholdersForm {
@@ -70,9 +102,12 @@ export default Vue.extend({
     }
   },
   methods: {
-    deleteShareholder (index:number) {
-      this.$store.commit('shareholdersForm/removeShareholder', index)
-      localStorage.shareholders = JSON.stringify(this.$store.state.shareholdersForm.shareholders)
+    openModal (index:number, title:string, firstName:string, surname:string) {
+      this.modalProps.index = index
+      this.modalProps.title = title
+      this.modalProps.firstName = firstName
+      this.modalProps.surname = surname
+      this.showDeleteConfirmationModal = true
     }
   }
 })
