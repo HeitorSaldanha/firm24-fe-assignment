@@ -11,10 +11,16 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'ReturnStep',
+  props: {
+    index: {
+      type: Number,
+      default: 0
+    }
+  },
   methods: {
     handleReturn () {
-      const nextStep = this.$store.state.shareholdersForm.currentFormStep - 1
-      this.$store.commit('shareholdersForm/changeStep', nextStep)
+      const nextStep = this.$store.state.shareholdersForm.shareholders[this.index].currentFormStep - 1
+      this.$store.commit('shareholdersForm/changeStep', { index: this.index, step: nextStep })
     }
   }
 })

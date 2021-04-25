@@ -2,7 +2,7 @@
   <section class="section">
     <Stepper>
       <b-step-item step="1" label="Shareholders">
-        <ShareholdersForm />
+        <ShareholdersList />
       </b-step-item>
 
       <b-step-item step="2" label="BV Data">
@@ -24,13 +24,13 @@
 
 <script>
 import Stepper from '~/components/Stepper'
-import ShareholdersForm from '~/components/shareholdersForm/ShareholdersForm'
+import ShareholdersList from '~/components/shareholdersForm/ShareholdersList'
 export default {
   name: 'HomePage',
 
   components: {
     Stepper,
-    ShareholdersForm
+    ShareholdersList
   }
 }
 </script>

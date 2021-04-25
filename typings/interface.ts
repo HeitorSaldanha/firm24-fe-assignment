@@ -25,6 +25,7 @@ export interface ContactDetails {
 
 export interface Shareholder {
   title: string,
+  currentFormStep: number,
   generalData: GeneralData,
   personalData: PersonalData,
   contactDetails: ContactDetails
@@ -32,6 +33,5 @@ export interface Shareholder {
 
 export interface ShareholdersForm {
   isOpen: number|null,
-  currentFormStep: number,
   shareholders: Shareholder[]
 }

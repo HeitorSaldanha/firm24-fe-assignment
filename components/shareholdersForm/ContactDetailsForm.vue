@@ -6,7 +6,7 @@
       <div
         class="column is-three-fiths is-offset-1"
       >
-        <ReturnStep />
+        <ReturnStep :index="index" />
         <h3 class="title has-text-primary">
           Contact Details
         </h3>

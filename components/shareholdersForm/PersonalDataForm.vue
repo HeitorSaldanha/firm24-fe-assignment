@@ -6,7 +6,7 @@
       <div
         class="column is-three-fiths is-offset-1"
       >
-        <ReturnStep />
+        <ReturnStep :index="index" />
         <h3 class="title has-text-primary">
           Personal data
         </h3>
@@ -77,7 +77,7 @@
           type="is-primary"
           rounded
           outlined
-          @click.prevent="$store.commit('shareholdersForm/changeStep', 2)"
+          @click.prevent="$store.commit('shareholdersForm/changeStep', { index, step:2 })"
         >
           Contact details
         </b-button>

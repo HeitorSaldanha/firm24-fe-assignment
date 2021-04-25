@@ -2,10 +2,10 @@ import { ShareholdersForm, Shareholder } from '~/typings/interface'
 
 export const state = ():ShareholdersForm => ({
   isOpen: 0,
-  currentFormStep: 0,
   shareholders: [
     {
       title: 'Shareholder 1 (applicant)',
+      currentFormStep: 0,
       generalData: {
         naturalPerson: null,
         fluent: null,
@@ -37,15 +37,13 @@ export const mutations = {
   open (state:ShareholdersForm, open:number|null) {
     state.isOpen = open
   },
-  changeStep (state:ShareholdersForm, step:number) {
-    state.currentFormStep = step
-  },
   loadShareholders (state:ShareholdersForm, shareholders:Shareholder[]) {
     state.shareholders = shareholders
   },
   addShareholder (state:ShareholdersForm) {
     const newShareholder = {
       title: `Shareholder ${state.shareholders.length + 1}`,
+      currentFormStep: 0,
       generalData: {
         naturalPerson: null,
         fluent: null,
@@ -74,6 +72,9 @@ export const mutations = {
   },
   removeShareholder (state:ShareholdersForm, shareholder:Shareholder) {
     state.shareholders.splice(state.shareholders.findIndex(el => el.title === shareholder.title), 1)
+  },
+  changeStep (state:ShareholdersForm, data: { index: number, step: number }) {
+    state.shareholders[data.index].currentFormStep = data.step
   },
   // General Data Mutations
   toggleNaturalPerson (state:ShareholdersForm, data: { index: number, value: boolean }) {

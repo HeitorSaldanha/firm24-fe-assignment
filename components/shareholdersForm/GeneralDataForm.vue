@@ -116,7 +116,7 @@
           type="is-primary"
           rounded
           outlined
-          @click.prevent="$store.commit('shareholdersForm/changeStep', 1)"
+          @click.prevent="$store.commit('shareholdersForm/changeStep', { index, step:1 })"
         >
           Personal data
         </b-button>
