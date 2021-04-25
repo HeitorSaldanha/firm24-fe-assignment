@@ -4,12 +4,12 @@
       Who will be the shareholders?
     </h1>
     <b-collapse
-      v-for="(shareholder, index) of $store.state.shareholdersForm.shareholders"
+      v-for="(shareholder, index) of shareholdersForm.shareholders"
       :key="index"
       class="card"
       animation="slide"
-      :open="$store.state.shareholdersForm.isOpen == index"
-      @open="$store.state.shareholdersForm.isOpen = index"
+      :open="shareholdersForm.isOpen == index"
+      @open="shareholdersForm.isOpen = index"
     >
       <template #trigger="props">
         <div
@@ -29,7 +29,7 @@
       <div class="card-content">
         <div class="content">
           <b-steps
-            v-model="$store.state.shareholdersForm.currentFormStep"
+            v-model="shareholdersForm.currentFormStep"
             :label-position="'right'"
             :size="'is-small'"
             :has-navigation="false"
@@ -37,15 +37,15 @@
             vertical
             type="is-success"
           >
-            <b-step-item label="General data">
-              <GeneralDataForm />
+            <b-step-item label="General data" :clickable="false">
+              <GeneralDataForm :index="index" />
             </b-step-item>
 
-            <b-step-item label="Personal data">
+            <b-step-item label="Personal data" :clickable="false">
               Lorem Ipsum Dolor Sit Amet
             </b-step-item>
 
-            <b-step-item label="Contact details">
+            <b-step-item label="Contact details" :clickable="false">
               Lorem Ipsum Dolor Sit Amet
             </b-step-item>
           </b-steps>
@@ -58,12 +58,19 @@
 <script lang="ts">
 import Vue from 'vue'
 import GeneralDataForm from '~/components/shareholdersForm/GeneralDataForm.vue'
+import { ShareholdersForm } from '~/typings/interface'
 
 export default Vue.extend({
   name: 'ShareholdersForm',
 
   components: {
     GeneralDataForm
+  },
+
+  computed: {
+    shareholdersForm ():ShareholdersForm {
+      return { ...this.$store.state.shareholdersForm }
+    }
   }
 })
 </script>
