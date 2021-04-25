@@ -1,7 +1,9 @@
 <template>
   <div class="modal-card" style="width: auto">
     <header class="modal-card-head">
-      <p class="modal-card-title has-text-centered has-text-danger">Atention!</p>
+      <p class="modal-card-title has-text-centered has-text-danger">
+        Atention!
+      </p>
     </header>
     <section class="modal-card-body">
       <p class="has-text-centered mb-5">
