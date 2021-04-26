@@ -1,7 +1,7 @@
 # firm24-fe-assignment
 
 Small application to simulate a shareholder registration form.
-Created using Nuxt, deploy, tests and buil instructions as follows:
+Created using Nuxt. deploy, tests and buil instructions as follows:
 
 ## Build Setup
 
